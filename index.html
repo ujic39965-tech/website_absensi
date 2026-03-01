@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Absensi Magang Berdampak | PT WIKA Beton PPB Subang</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+
+<body>
+    <div id="splash-screen">
+        <div class="splash-content">
+            <i class="fa-solid fa-hard-hat splash-icon"></i>
+            <h1 class="splash-title">Portal Absensi</h1>
+            <p class="splash-subtitle">Magang Berdampak<br>PT Wijaya Karya Beton Tbk. PPB Subang</p>
+            <div class="loader"></div>
+        </div>
+    </div>
+    <div class="app-container fade-in">
+        <header class="main-header">
+            <div class="header-content">
+                <h1><i class="fa-solid fa-building-user"></i> Portal Absensi Magang Berdampak</h1>
+                <p>PT Wijaya Karya Beton Tbk. PPB Subang</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="top-panels">
+                <section class="card qr-section">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-qrcode"></i> Scan QR Code</h2>
+                    </div>
+                    <div class="card-body">
+                        <div id="reader-container">
+                            <div id="reader"></div>
+                        </div>
+                        <p class="qr-note"><i class="fa-solid fa-camera"></i> Arahkan QR Code ke kamera untuk Check
+                            In/Out otomatis.</p>
+                    </div>
+                </section>
+
+                <section class="card form-section">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-keyboard"></i> Input Manual</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="absensiForm">
+                            <div class="input-group">
+                                <label for="nama">Nama Lengkap</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-user"></i>
+                                    <input type="text" id="nama" placeholder="Masukkan nama..." autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="divisi">Divisi Penempatan</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-users-gear"></i>
+                                    <select id="divisi">
+                                        <option value="" disabled selected>-- Pilih Divisi --</option>
+                                        <option value="Quality Engineering">Quality Engineering</option>
+                                        <option value="Quality Control (QC)">Quality Control (QC)</option>
+                                        <option value="Production">Production</option>
+                                        <option value="PEP">PEP</option>
+                                        <option value="Equipment">Equipment</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="button-group">
+                                <button type="button" id="btnMasuk" class="btn btn-primary">
+                                    <i class="fa-solid fa-right-to-bracket"></i> Check In
+                                </button>
+                                <button type="button" id="btnKeluar" class="btn btn-danger">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Check Out
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+            <section class="card table-section">
+                <div class="card-header table-header-flex">
+                    <h2><i class="fa-solid fa-clipboard-list"></i> Log Operasional Harian</h2>
+                    <button type="button" id="btnExport" class="btn btn-success btn-sm">
+                        <i class="fa-solid fa-file-excel"></i> Export Excel
+                    </button>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table id="tabelAbsensi">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <th>Nama</th>
+                                    <th>Divisi</th>
+                                    <th>Waktu</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logData">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
